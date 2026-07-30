@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A model-based mental health score predictor." />
+    <title>Mental Health Score Predictor</title>
+    <link rel="stylesheet" href="/static/styles.css?v=4" />
+    <script src="/static/script.js?v=5" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">Wellbeing insights</p>
+        <h1>Mental Health Score Predictor</h1>
+        <p>Share a few lifestyle and social-media habits to receive a model-based score estimate.</p>
+      </header>
+
+      <section class="card">
+        <form id="prediction-form" novalidate>
+          <fieldset>
+            <legend>About you</legend>
+            <div class="form-grid">
+              <label>Age <input name="Age" type="number" min="10" max="100" value="20" required /></label>
+              <label>Gender
+                <select name="Gender" required><option>Female</option><option>Male</option><option>Other</option></select>
+              </label>
+              <label>Academic level
+                <select name="Academic_Level" required><option>Undergraduate</option><option>High School</option><option>Graduate</option></select>
+              </label>
+              <label>Country <input name="Country" type="text" value="India" required /></label>
+              <label>Stress level
+                <select name="Stress_Level" required><option>Medium</option><option>Low</option><option>High</option><option>Very High</option></select>
+              </label>
+              <label>Primary purpose
+                <select name="Purpose_Of_Use" required><option>Education</option><option>Networking</option><option>Entertainment</option><option>News</option></select>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Social media and routine</legend>
+            <div class="form-grid">
+              <label>Most-used platform
+                <select name="Most_Used_Platform" required><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>Snapchat</option><option>Twitter</option><option>YouTube</option><option>TikTok</option><option>LINE</option><option>KakaoTalk</option><option>VKontakte</option><option>WhatsApp</option><option>WeChat</option></select>
+              </label>
+              <label class="range-field"><span>Daily social-media use <output for="usage-hours">3 h</output></span><input id="usage-hours" name="Avg_Daily_Usage_Hours" type="range" min="0" max="24" step="0.5" value="3" data-suffix=" h" required /></label>
+              <label>Daily phone unlocks<input name="Daily_Unlocks" type="number" min="0" step="1" value="50" required /></label>
+              <label class="range-field"><span>Study hours per day <output for="study-hours">4 h</output></span><input id="study-hours" name="Study_Hours" type="range" min="0" max="16" step="0.5" value="4" data-suffix=" h" required /></label>
+              <label class="range-field"><span>Physical activity per day <output for="activity-hours">1 h</output></span><input id="activity-hours" name="Physical_Activity_Hours" type="range" min="0" max="12" step="0.5" value="1" data-suffix=" h" required /></label>
+              <label class="range-field"><span>Sleep per night <output for="sleep-hours">7 h</output></span><input id="sleep-hours" name="Sleep_Hours_Per_Night" type="range" min="0" max="24" step="0.5" value="7" data-suffix=" h" required /></label>
+            </div>
+          </fieldset>
+
+          <button id="submit-button" type="submit">Predict my score</button>
+        </form>
+      </section>
+
+      <section id="loading-state" class="status loading" aria-live="polite" hidden>
+        <span class="spinner" aria-hidden="true"></span> Calculating your prediction…
+      </section>
+      <section id="error-state" class="status error" role="alert" hidden></section>
+      <section id="result-state" class="result-card" aria-live="polite" hidden>
+        <span class="result-label">Predicted Mental Health Score</span>
+        <strong id="prediction-value">—</strong>
+      </section>
+    </main>
+  </body>
+</html>
