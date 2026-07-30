@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A model-based mental health score predictor using lifestyle and social-media habits." />
+    <title>Mental Health Score Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css?v=10" />
+  </head>
+  <body>
+    <div class="app-shell">
+
+      <!-- ── LEFT PANEL: Form ── -->
+      <div class="form-panel">
+        <div class="form-panel-inner">
+
+          <!-- Section 01: Profile -->
+          <div class="section-header">
+            <span class="section-badge">01</span>
+            <h2 class="section-title">Profile</h2>
+          </div>
+          <form id="prediction-form" novalidate>
+            <div class="fields-group">
+              <div class="field-row three-col">
+                <div class="field">
+                  <label for="f-age">Age</label>
+                  <input id="f-age" name="Age" type="number" min="10" max="100" value="22" placeholder="22" required />
+                  <span class="field-hint">10–100</span>
+                </div>
+                <div class="field">
+                  <label for="f-gender">Gender</label>
+                  <div class="select-wrap">
+                    <select id="f-gender" name="Gender" required>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                    <span class="chevron">▾</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="f-country">Country</label>
+                  <input id="f-country" name="Country" type="text" value="India" placeholder="India" required />
+                  <span class="field-hint">Not listed? Type it anyway.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 02: Academic & Digital Habits -->
+            <div class="section-header">
+              <span class="section-badge">02</span>
+              <h2 class="section-title">Academic &amp; Digital Habits</h2>
+            </div>
+            <div class="fields-group">
+              <div class="field-row two-col">
+                <div class="field">
+                  <label for="f-academic">Academic level</label>
+                  <div class="select-wrap">
+                    <select id="f-academic" name="Academic_Level" required>
+                      <option>Undergraduate</option>
+                      <option selected>Graduate</option>
+                      <option>High School</option>
+                    </select>
+                    <span class="chevron">▾</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="f-platform">Most-used platform</label>
+                  <div class="select-wrap">
+                    <select id="f-platform" name="Most_Used_Platform" required>
+                      <option>Instagram</option>
+                      <option>Facebook</option>
+                      <option>LinkedIn</option>
+                      <option>Snapchat</option>
+                      <option>Twitter</option>
+                      <option selected>YouTube</option>
+                      <option>TikTok</option>
+                      <option>LINE</option>
+                      <option>KakaoTalk</option>
+                      <option>VKontakte</option>
+                      <option>WhatsApp</option>
+                      <option>WeChat</option>
+                    </select>
+                    <span class="chevron">▾</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-row two-col">
+                <div class="field">
+                  <label for="f-purpose">Primary purpose</label>
+                  <div class="select-wrap">
+                    <select id="f-purpose" name="Purpose_Of_Use" required>
+                      <option>Education</option>
+                      <option>Networking</option>
+                      <option selected>Entertainment</option>
+                      <option>News</option>
+                    </select>
+                    <span class="chevron">▾</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="f-usage">Avg. daily screen time</label>
+                  <div class="input-suffix-wrap">
+                    <input id="f-usage" name="Avg_Daily_Usage_Hours" type="number" min="0" max="24" step="0.5" value="2" required />
+                    <span class="suffix">hrs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field-row one-col">
+                <div class="field">
+                  <label for="f-unlocks">Daily phone unlocks</label>
+                  <input id="f-unlocks" name="Daily_Unlocks" type="number" min="0" step="1" value="5" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 03: Lifestyle & Stress -->
+            <div class="section-header">
+              <span class="section-badge">03</span>
+              <h2 class="section-title">Lifestyle &amp; Stress</h2>
+            </div>
+            <div class="fields-group">
+              <div class="field-row three-col">
+                <div class="field">
+                  <label for="f-study">Study hours / day</label>
+                  <div class="input-suffix-wrap">
+                    <input id="f-study" name="Study_Hours" type="number" min="0" max="16" step="0.5" value="0.0" placeholder="0.0" required />
+                    <span class="suffix">hrs</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="f-activity">Physical activity / day</label>
+                  <div class="input-suffix-wrap">
+                    <input id="f-activity" name="Physical_Activity_Hours" type="number" min="0" max="12" step="0.5" value="0.0" placeholder="0.0" required />
+                    <span class="suffix">hrs</span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="f-sleep">Sleep / night</label>
+                  <div class="input-suffix-wrap">
+                    <input id="f-sleep" name="Sleep_Hours_Per_Night" type="number" min="0" max="24" step="0.5" value="0.0" placeholder="0.0" required />
+                    <span class="suffix">hrs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="field stress-level-field">
+                <label>Perceived stress level</label>
+                <div class="stress-buttons" id="stress-buttons" role="group" aria-label="Perceived stress level">
+                  <button type="button" class="stress-btn" data-value="Low">Low</button>
+                  <button type="button" class="stress-btn" data-value="Medium">Medium</button>
+                  <button type="button" class="stress-btn" data-value="High">High</button>
+                  <button type="button" class="stress-btn" data-value="Very High">Very High</button>
+                </div>
+                <input type="hidden" id="f-stress" name="Stress_Level" value="Medium" required />
+              </div>
+            </div>
+
+            <button id="submit-btn" type="submit">Read my signal</button>
+          </form>
+
+        </div>
+      </div>
+
+      <!-- ── RIGHT PANEL: Score Display ── -->
+      <div class="score-panel" id="score-panel">
+        <div class="score-panel-inner">
+
+          <div class="gauge-wrap">
+            <svg class="gauge-svg" viewBox="0 0 200 110" aria-hidden="true">
+              <!-- track arc -->
+              <path class="gauge-track"
+                d="M 20 100 A 80 80 0 0 1 180 100"
+                fill="none" stroke-width="8" stroke-linecap="round" />
+              <!-- value arc -->
+              <path class="gauge-value" id="gauge-arc"
+                d="M 20 100 A 80 80 0 0 1 180 100"
+                fill="none" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="251.2" stroke-dashoffset="251.2" />
+              <!-- needle pivot -->
+              <circle class="gauge-pivot" cx="100" cy="100" r="6" />
+              <!-- needle -->
+              <line class="gauge-needle" id="gauge-needle"
+                x1="100" y1="100" x2="100" y2="30"
+                stroke-width="3" stroke-linecap="round"
+                transform="rotate(-90 100 100)" />
+            </svg>
+          </div>
+
+          <div id="score-placeholder" class="score-placeholder">
+            <p class="score-headline">Your score will appear here</p>
+            <p class="score-sub">Fill in the form and submit to generate a predicted mental health score from 0–10.</p>
+          </div>
+
+          <div id="score-loading" class="score-loading" hidden>
+            <div class="pulse-ring"></div>
+            <p class="score-headline loading-text">Reading the signal…</p>
+            <p class="score-sub">Running your habits through the model.</p>
+          </div>
+
+          <div id="score-result" class="score-result" hidden>
+            <div class="score-number-wrap">
+              <span class="score-number" id="score-number">0.0</span>
+              <span class="score-denom">/10</span>
+            </div>
+            <div class="score-bar-track">
+              <div class="score-bar-fill" id="score-bar"></div>
+            </div>
+            <p class="score-label" id="score-label">–</p>
+          </div>
+
+          <div id="score-error" class="score-error" hidden>
+            <p class="error-icon">⚠</p>
+            <p class="error-msg" id="error-msg-text">Something went wrong.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </body>
+  <script src="/static/script.js?v=10" defer></script>
+</html>

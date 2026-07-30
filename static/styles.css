@@ -1,0 +1,413 @@
+/* ── Reset & Tokens ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+:root {
+  --green-deep:    #1a3a2e;
+  --green-dark:    #16502f;
+  --green-mid:     #1e7a4e;
+  --green-accent:  #2aad6a;
+  --green-light:   #e8f5ee;
+  --green-border:  #c9e3d4;
+  --text-primary:  #1a2e25;
+  --text-secondary:#4a6b57;
+  --text-muted:    #7a9e8a;
+  --bg-page:       #f4f8f5;
+  --bg-form:       #ffffff;
+  --input-bg:      #f7fbf8;
+  --shadow-card:   0 4px 32px rgba(22, 80, 47, 0.10);
+  --shadow-input:  0 1px 4px rgba(22, 80, 47, 0.06);
+  --radius-card:   20px;
+  --radius-input:  10px;
+  --radius-btn:    10px;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+
+/* ── App Shell: two panels ── */
+.app-shell {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+/* ═══════════════════════════
+   LEFT PANEL — Form
+═══════════════════════════ */
+.form-panel {
+  background: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+  padding: 48px 40px 48px 48px;
+  overflow-y: auto;
+}
+
+.form-panel-inner {
+  background: var(--bg-form);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 680px;
+}
+
+/* ── Section headers ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.section-divider {
+  height: 1px;
+  background: var(--green-border);
+  margin: 26px 0;
+  opacity: 0.6;
+}
+
+/* ── Fields Layout ── */
+.fields-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field-row {
+  display: grid;
+  gap: 16px;
+}
+.field-row.three-col { grid-template-columns: repeat(3, 1fr); }
+.field-row.two-col   { grid-template-columns: repeat(2, 1fr); }
+.field-row.one-col   { grid-template-columns: 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field > label,
+.field > label:first-child {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.005em;
+}
+
+.field-hint {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: -2px;
+}
+
+/* ── Inputs & Selects ── */
+input, select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1.5px solid var(--green-border);
+  border-radius: var(--radius-input);
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-input);
+  transition: border-color 0.18s, box-shadow 0.18s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--green-mid);
+  box-shadow: 0 0 0 3px rgba(30, 122, 78, 0.15);
+}
+
+input::placeholder { color: var(--text-muted); }
+
+/* ── Select wrapper with custom arrow ── */
+.select-wrap {
+  position: relative;
+}
+.select-wrap select {
+  padding-right: 32px;
+  cursor: pointer;
+}
+.select-wrap .chevron {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+/* ── Number input with suffix ── */
+.input-suffix-wrap {
+  position: relative;
+}
+.input-suffix-wrap input {
+  padding-right: 42px;
+}
+.input-suffix-wrap .suffix {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ── Stress level toggle buttons ── */
+.stress-level-field .field {
+  gap: 10px;
+}
+.stress-level-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.stress-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.stress-btn {
+  flex: 1;
+  min-width: 72px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--green-border);
+  border-radius: var(--radius-btn);
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.12s;
+}
+.stress-btn:hover {
+  background: var(--green-light);
+  border-color: var(--green-mid);
+  color: var(--green-dark);
+}
+.stress-btn.active {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Submit button ── */
+#submit-btn {
+  display: block;
+  width: auto;
+  margin-top: 28px;
+  padding: 13px 32px;
+  background: var(--green-deep);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-btn);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(22, 80, 47, 0.3);
+}
+#submit-btn:hover:not(:disabled) {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(22, 80, 47, 0.38);
+}
+#submit-btn:active:not(:disabled) { transform: translateY(0); }
+#submit-btn:disabled { opacity: 0.7; cursor: wait; }
+
+/* ═══════════════════════════
+   RIGHT PANEL — Score
+═══════════════════════════ */
+.score-panel {
+  background: var(--green-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.score-panel-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 32px;
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+/* ── Gauge SVG ── */
+.gauge-wrap {
+  width: 180px;
+  flex-shrink: 0;
+}
+.gauge-svg { width: 100%; overflow: visible; }
+.gauge-track  { stroke: rgba(255,255,255,0.12); }
+.gauge-value  {
+  stroke: var(--green-accent);
+  transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);
+  filter: drop-shadow(0 0 8px rgba(42,173,106,0.6));
+}
+.gauge-pivot  { fill: rgba(255,255,255,0.8); }
+.gauge-needle {
+  stroke: rgba(255,255,255,0.85);
+  transform-origin: 100px 100px;
+  transform: rotate(-90deg);
+  transition: transform 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Score text states ── */
+.score-placeholder { padding: 0 8px; }
+.score-headline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.score-sub {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+
+/* ── Loading pulse ── */
+.score-loading { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pulse-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid rgba(42,173,106,0.3);
+  border-top-color: var(--green-accent);
+  animation: spin 0.9s linear infinite;
+}
+.loading-text { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+@keyframes spin  { to { transform: rotate(360deg); } }
+
+/* ── Score result ── */
+.score-result { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; }
+
+.score-number-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.score-number {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.score-denom {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+}
+
+.score-bar-track {
+  width: 80%;
+  height: 6px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green-accent), #7ae8b0);
+  width: 0%;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+
+.score-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ── Error state ── */
+.score-error { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.error-icon  { font-size: 2.2rem; }
+.error-msg   { font-size: 0.85rem; color: rgba(255,200,200,0.9); line-height: 1.5; padding: 0 8px; }
+
+/* ═══════════════════════════
+   Responsive
+═══════════════════════════ */
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .form-panel {
+    padding: 28px 16px;
+    order: 2;
+  }
+  .score-panel {
+    position: relative;
+    min-height: 320px;
+    order: 1;
+  }
+  .field-row.three-col { grid-template-columns: 1fr 1fr; }
+  .field-row.two-col   { grid-template-columns: 1fr; }
+  .field-row.one-col   { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .form-panel-inner { padding: 24px 18px; }
+  .field-row.three-col { grid-template-columns: 1fr; }
+}
